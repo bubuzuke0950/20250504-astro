@@ -13,7 +13,6 @@ const { notices }: { notices: Notice[] } = Astro.props;
     <ul>
       {notices.map((notice) => (
         <li class="notice-item" key={notice.url}>
-          <a href={notice.url} class="notice-link">
               <div class="notice-header">
                   <h3 class="notice-title">{notice.title}</h3>
               </div>
