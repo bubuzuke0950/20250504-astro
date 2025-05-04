@@ -1,0 +1,83 @@
+---
+const { events } = Astro.props;
+
+function formatDate(dateStr) {
+  const days = ["日", "月", "火", "水", "木", "金", "土"];
+  const date = new Date(dateStr);
+  const month = date.getMonth() + 1;
+  const day = date.getDate();
+  const weekday = days[date.getDay()];
+  return `${month}/${day}(${weekday})`;
+}
+---
+<section class="events">
+  <h2>イベント情報</h2>
+  <ul>
+    {events.map((event) => (
+      <li class="event-item" key={event.name + event.date}>
+        <div class="event-header">
+          <h3 class="event-title">{formatDate(event.date)} {event.name}</h3>
+        </div>
+        <ul class="event-details">
+          {event.details.map((detail) => (
+            <li>{detail}</li>
+          ))}
+        </ul>
+      </li>
+    ))}
+  </ul>
+</section>
+
+<style>
+  .events {
+    background-color: #ffffff;
+    padding: 2rem;
+    margin-top: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .events h2 {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333333;
+    margin-bottom: 1.5rem;
+  }
+
+  .event-item {
+    border-bottom: 1px solid #ddd;
+    padding: 1rem 0;
+    list-style: none;
+  }
+
+  .event-item:last-child {
+    border-bottom: none;
+  }
+
+  .event-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+  }
+
+  .event-title {
+    font-size: 18px;
+    margin: 0;
+    color: #333333;
+    list-style: none;
+  }
+
+  .event-details {
+    margin-top: 0.5rem;
+    padding-left: 1rem;
+    list-style-type: disc;
+  }
+
+  .event-details li {
+    font-size: 14px;
+    color: #555555;
+  }
+</style>

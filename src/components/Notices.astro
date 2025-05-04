@@ -1,0 +1,95 @@
+---
+interface Notice {
+  url: string;
+  title: string;
+  date: string;
+  content: string;
+}
+
+const { notices }: { notices: Notice[] } = Astro.props;
+---
+<section class="notices">
+    <h2>お知らせ</h2>
+    <ul>
+      {notices.map((notice) => (
+        <li class="notice-item" key={notice.url}>
+          <a href={notice.url} class="notice-link">
+              <div class="notice-header">
+                  <h3 class="notice-title">{notice.title}</h3>
+              </div>
+              <p class="notice-date">{notice.date}</p>
+          </a>
+          <div class="notice-content" set:html={notice.content} />
+        </li>
+      ))}
+    </ul>
+</section>
+
+<style>
+  .notices {
+    background-color: #ffffff;
+    padding: 2rem;
+    margin-top: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .notices h2 {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333333;
+    margin-bottom: 1.5rem;
+  }
+
+  .notice-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+  }
+
+  .notice-title {
+    font-size: 20px;
+    font-weight: bold;
+    margin: 0;
+  }
+
+  .notice-item {
+    border-bottom: 1px solid #ddd;
+    padding: 1rem 0;
+    list-style: none;
+  }
+
+  .notice-item:last-child {
+    border-bottom: none;
+  }
+
+  .notice-link {
+    text-decoration: none;
+    color: #007BFF;
+  }
+
+  .notice-link h3 {
+    font-size: 18px;
+    margin: 0;
+    color: #333333;
+  }
+
+  .notice-date {
+    font-size: 12px;
+    color: #666666;
+    margin-top: 0.25rem;
+  }
+
+  .notice-content {
+    font-size: 14px;
+    color: #555555;
+    margin-top: 0.5rem;
+  }
+
+  .notice-link:hover h3 {
+    text-decoration: underline;
+  }
+</style>

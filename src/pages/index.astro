@@ -1,16 +1,50 @@
 ---
+import Notices from "../components/Notices.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import Events from "../components/Events.astro";
+import Twitter from "../components/Twitter.astro";
+import { events } from "../data/events.js";
+import "../styles/index.css";
+const pageTitle = "電通大新歓公式サイト";
+const notices = await Astro.glob('./notices/*.md');
+const noticeList = notices.map((notice) => {
+  return {
+    title: notice.frontmatter.title,
+    date: notice.frontmatter.date,
+    url: notice.url,
+    content: notice.compiledContent(),
+  };
+});
+noticeList.sort((a, b) => {
+  const dateA = new Date(a.date).getTime() || 0;
+  const dateB = new Date(b.date).getTime() || 0;
+  return dateB - dateA;
+});
 
 ---
-
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{pageTitle}</title>
+  </head>
+  <body>
+    <Header currentPage="" />
+    <main class="main-content">
+      <div class="left-column">
+        <section class="notices-events">
+          <Notices notices={noticeList} />
+          <Events events={events} />
+        </section>
+      </div>
+      <div class="right-column">
+        <Twitter url="https://x.com/mezase_kenzenn/status/1918691192465977674" />
+		<Twitter url="https://x.com/amaamaLa_/status/1918606467156021340" />
+      </div>
+    </main>
+    <Footer />
+  </body>
 </html>

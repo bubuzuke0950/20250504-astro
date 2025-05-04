@@ -1,0 +1,38 @@
+---
+import Navigation from "./Navigation.astro";
+const { currentPage } = Astro.props;
+---
+<header>
+    <h1>新入生歓迎実行委員会</h1>
+
+    <nav>
+        <ul>
+            <Navigation pageTitle="Home" link="" currentPage={currentPage}/>
+            <Navigation pageTitle="About" link="about" currentPage={currentPage}/>
+            <Navigation pageTitle="Blog" link="blog" currentPage={currentPage}/>
+            <Navigation pageTitle="Contact" link="contact" currentPage={currentPage}/>
+        </ul>
+    </nav>
+</header>
+
+<style>
+    header {
+        padding: 1rem;
+        background-color: #fafafa;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-radius: 6px;
+    }
+    header h1 {
+        font-weight:  bold;
+        font-size: 20px;
+    }
+    ul {
+        display: flex;
+        align-items: center;
+        gap: 32px;
+        font-size: 16px;
+        font-weight: bold;
+    }
+</style>
