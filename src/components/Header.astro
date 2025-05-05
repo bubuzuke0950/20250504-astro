@@ -3,12 +3,12 @@ import Navigation from "./Navigation.astro";
 const { currentPage } = Astro.props;
 ---
 <header>
-    <img src="/logo.png" alt="Logo"/>
+    <img src="/uec-orientation-2025/logo.png" alt="Logo"/>
 
     <nav>
         <ul>
-            <Navigation pageTitle="Home" link="" currentPage={currentPage}/>
-            <Navigation pageTitle="新歓イベント" link="events-info" currentPage={currentPage}/>
+            <Navigation pageTitle="Home" link="uec-orientation-2025" currentPage={currentPage}/>
+            <Navigation pageTitle="新歓イベント" link="uec-orientation-2025/events-info" currentPage={currentPage}/>
             <Navigation pageTitle="サークル紹介" link="blog" currentPage={currentPage}/>
             <Navigation pageTitle="お問い合わせ" link="contact" currentPage={currentPage}/>
         </ul>
