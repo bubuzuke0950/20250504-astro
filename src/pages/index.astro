@@ -1,13 +1,14 @@
 ---
+import Layout from "../layouts/Layout.astro";
 import Notices from "../components/Notices.astro";
-import Header from "../components/Header.astro";
-import Footer from "../components/Footer.astro";
 import Events from "../components/Events.astro";
 import Twitter from "../components/Twitter.astro";
-import { events } from "../data/events.js";
-import "../styles/index.css";
+import { events } from "../Data/events.js";
+
 const pageTitle = "電通大新歓公式サイト";
+const pageLink = "";
 const notices = await Astro.glob('./notices/*.md');
+
 const noticeList = notices.map((notice) => {
   return {
     title: notice.frontmatter.title,
@@ -16,35 +17,38 @@ const noticeList = notices.map((notice) => {
     content: notice.compiledContent(),
   };
 });
+
 noticeList.sort((a, b) => {
   const dateA = new Date(a.date).getTime() || 0;
   const dateB = new Date(b.date).getTime() || 0;
   return dateB - dateA;
 });
-
 ---
-<html lang="ja">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width" />
-    <meta name="generator" content={Astro.generator} />
-    <title>{pageTitle}</title>
-  </head>
-  <body>
-    <Header currentPage="" />
-    <main class="main-content">
-      <div class="left-column">
-        <section class="notices-events">
-          <Notices notices={noticeList} />
-          <Events events={events} />
-        </section>
-      </div>
-      <div class="right-column">
-		<Twitter url="https://x.com/uecshinkan_info/status/1896893395639124192" />
-        <Twitter url="https://x.com/uecshinkan_info/status/1906557074672062736" />
-      </div>
-    </main>
-    <Footer />
-  </body>
-</html>
+<Layout title={pageTitle} currentPage={pageLink}>
+	<div class="slide">
+		<img src="/slide1.png"/>
+	</div>
+  <main class="main-content">
+    <div class="left-column">
+      <section class="notices-events">
+        <Notices notices={noticeList} />
+        <Events events={events} />
+      </section>
+    </div>
+    <div class="right-column">
+      <Twitter url="https://x.com/uecshinkan_info/status/1896893395639124192" />
+      <Twitter url="https://x.com/uecshinkan_info/status/1906557074672062736" />
+      <Twitter url="https://x.com/uecshinkan_info/status/1897460946404348401" />
+    </div>
+  </main>
+</Layout>
+
+<style>
+  .slide img {
+
+	width: 100%;
+	height: auto;
+	object-fit: cover;
+	margin-top: 1rem;
+  }
+</style>

@@ -3,14 +3,14 @@ import Navigation from "./Navigation.astro";
 const { currentPage } = Astro.props;
 ---
 <header>
-    <h1>新入生歓迎実行委員会</h1>
+    <img src="/logo.png" alt="Logo"/>
 
     <nav>
         <ul>
             <Navigation pageTitle="Home" link="" currentPage={currentPage}/>
             <Navigation pageTitle="About" link="about" currentPage={currentPage}/>
             <Navigation pageTitle="Blog" link="blog" currentPage={currentPage}/>
-            <Navigation pageTitle="Contact" link="contact" currentPage={currentPage}/>
+            <Navigation pageTitle="お問い合わせ" link="contact" currentPage={currentPage}/>
         </ul>
     </nav>
 </header>
@@ -24,6 +24,12 @@ const { currentPage } = Astro.props;
         align-items: center;
         border-radius: 6px;
     }
+    header img {
+        width: 150px;
+        height: auto;
+        margin: 0rem;
+        padding: 0rem;
+    }
     header h1 {
         font-weight:  bold;
         font-size: 20px;
@@ -32,7 +38,7 @@ const { currentPage } = Astro.props;
         display: flex;
         align-items: center;
         gap: 32px;
-        font-size: 16px;
+        font-size: 18px;
         font-weight: bold;
     }
 </style>

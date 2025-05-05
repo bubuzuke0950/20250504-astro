@@ -1,23 +1,32 @@
-<style>
-  body {
-    font-family: Arial, sans-serif;
-  }
+body {
+  font-family: Arial, sans-serif;
+}
 
+main {
+  display: flex;
+  gap: 1rem; /* 左右のカラムの間隔 */
+  padding: 1rem;
+  flex-wrap: wrap; /* レスポンシブ対応 */
+}
+
+.left-column {
+  flex: 1; /* 左カラムは可変の幅を取る */
+  min-width: 300px; /* 最小幅 */
+}
+
+.right-column {
+  flex: 0 0 30%; /* 右カラムの幅を固定 */
+  min-width: 300px;
+  margin-top: 2rem; /* 上部にスペース */
+}
+@media (max-width: 800px) {
   main {
-    display: flex;
-    gap: 2rem; /* 左右のカラムの間隔 */
-    padding: 1rem;
-    flex-wrap: wrap; /* レスポンシブ対応 */
-  }
-
-  .left-column {
-    flex: 1; /* 左カラムは可変の幅を取る */
-    min-width: 300px; /* 最小幅 */
+    flex-direction: column;
   }
 
   .right-column {
-    flex: 0 0 30%; /* 右カラムの幅を固定 */
-    min-width: 200px;
-    margin-top: 2rem; /* 上部にスペース */
+    flex: 1 1 auto; /* 幅を親に合わせる */
+    width: 100%;
+    margin-top: 1rem;
   }
-</style>
+}
