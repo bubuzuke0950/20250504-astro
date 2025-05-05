@@ -3,7 +3,7 @@ import Layout from "../layouts/Layout.astro";
 import Notices from "../components/Notices.astro";
 import Events from "../components/Events.astro";
 import Twitter from "../components/Twitter.astro";
-import { events } from "../Data/events.js";
+/*import { events } from "../Data/events.js";*/
 
 const pageTitle = "電通大新歓公式サイト";
 const pageLink = "";
@@ -23,6 +23,48 @@ noticeList.sort((a, b) => {
   const dateB = new Date(b.date).getTime() || 0;
   return dateB - dateA;
 });
+// イベントデータの定義
+export const events = [
+  {
+    date: "2025-04-01",
+    name: "教科書販売(11:00 ~ 14:00)",
+    details: [],
+  },
+  {
+    date: "2025-04-02",
+    name: "UEC検定",
+    details: [
+      "9:00 ~ 12:30 I類前期",
+      "12:30 ~ 16:00 II類前期",
+      "16:00 ~ 19:30 III類前期",
+    ],
+  },
+  {
+    date: "2025-04-03",
+    name: "UEC検定・教科書販売(11:00 ~ 14:00)",
+    details: [
+      "9:00 ~ 12:30 I類後期, 推薦, 総合型他",
+      "12:30 ~ 16:00 II類後期, 推薦, 総合型他",
+      "16:00 ~ 19:30 III類後期, 推薦, 総合型他",
+    ],
+  },
+  {
+    date: "2025-04-04",
+    name: "入学式",
+    details: ["シールラリー1日目", "学内各施設でのサークルとの交流会開始"],
+  },
+  {
+    date: "2025-04-07",
+    name: "新入生オリエンテーション",
+    details: ["シールラリー2日目", "C棟前ステージパフォーマンス企画開始"],
+  },
+  {
+    date: "2025-04-13",
+    name: "新入生合同研修(9:00 ~ 12:15)",
+    details: ["シールラリー最終日", "学内各施設でのサークルとの交流会最終日"],
+  },
+];
+
 ---
 <Layout title={pageTitle} currentPage={pageLink}>
 	<div class="slide">
