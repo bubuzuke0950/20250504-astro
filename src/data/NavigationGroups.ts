@@ -31,7 +31,7 @@ export const navigationGroups: NavigationGroups[] = [
     consistPage: [
       {
         pageName: "学友会について",
-        pagePath: "/gakuyukai",
+        pagePath: "/about-gakuyukai",
       },
       {
         pageName: "新歓委員会について",

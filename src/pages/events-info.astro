@@ -2,22 +2,6 @@
 import Layout from "../layouts/Layout.astro";
 const pageTitle = "新歓イベント情報";
 const pageLink = "events-info";
-const notices = await Astro.glob('./notices/*.md');
-
-const noticeList = notices.map((notice) => {
-  return {
-    title: notice.frontmatter.title,
-    date: notice.frontmatter.date,
-    url: notice.url,
-    content: notice.compiledContent(),
-  };
-});
-
-noticeList.sort((a, b) => {
-  const dateA = new Date(a.date).getTime() || 0;
-  const dateB = new Date(b.date).getTime() || 0;
-  return dateB - dateA;
-});
 ---
 <Layout title={pageTitle} currentPage={pageLink}>
 	<h1>{pageTitle}</h1>
