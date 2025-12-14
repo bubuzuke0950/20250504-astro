@@ -3,6 +3,5 @@ import { defineConfig } from "astro/config";
 
 // https://astro.build/config
 export default defineConfig({
-  site: "https://bubuzuke0950.github.io",
-  base: "/uec-orientation-2025",
+  site: "https://example.com",
 });

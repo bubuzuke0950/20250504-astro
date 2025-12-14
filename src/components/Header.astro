@@ -1,44 +1,173 @@
 ---
-import Navigation from "./Navigation.astro";
-const { currentPage } = Astro.props;
+import { navigationGroups } from '../data/NavigationGroups';
 ---
-<header>
-    <img src="/uec-orientation-2025/logo.png" alt="Logo"/>
 
-    <nav>
-        <ul>
-            <Navigation pageTitle="Home" link="uec-orientation-2025" currentPage={currentPage}/>
-            <Navigation pageTitle="新歓イベント" link="uec-orientation-2025/events-info" currentPage={currentPage}/>
-            <Navigation pageTitle="サークル紹介" link="blog" currentPage={currentPage}/>
-            <Navigation pageTitle="お問い合わせ" link="contact" currentPage={currentPage}/>
-        </ul>
-    </nav>
+<header>
+  <div class="logo-container">
+    <a href="/">
+      <img class="logo" alt="ロゴ" src="/logo.png" />
+    </a>
+  </div>
+  <span class="spacer"></span>
+  <nav>
+    {
+      navigationGroups.map((group) => (
+        <div class="group-container">
+          <div class="group-name">{group.groupName}</div>
+          <ul class="pages">
+            {group.consistPage.map((page) => (
+              <li class="page-item">
+                <a href={page.pagePath} class="page-link">
+                  <span class="page-name">{page.pageName}</span>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))
+    }
+    <a href="/contact" class="link-button">お問い合わせ</a>
+  </nav>
 </header>
 
 <style>
+  @media screen and (max-width: 1024px) {
     header {
-        padding: 1rem;
-        background-color: #fafafa;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        border-radius: 6px;
+      display: none;
     }
-    header img {
-        width: 150px;
-        height: auto;
-        margin: 0rem;
-        padding: 0rem;
+  }
+  @media screen and (min-width: 1024px) {
+    header {
+      display: flex;
     }
-    header h1 {
-        font-weight:  bold;
-        font-size: 20px;
-    }
-    ul {
-        display: flex;
-        align-items: center;
-        gap: 32px;
-        font-size: 18px;
-        font-weight: bold;
-    }
+  }
+
+  header {
+    position: sticky;
+    top: 0;
+    align-items: center;
+    height: 60px;
+    padding-left: 10px;
+    z-index: 10000;
+    background-color: var(--main-color);
+    
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  }
+
+  .logo {
+    height: 55px;
+  }
+
+  .spacer {
+    flex-grow: 1;
+  }
+
+  nav {
+    display: flex;
+    align-items: center;
+  }
+
+  .group-container {
+    position: relative;
+    padding-right: 10px;
+    color: var(--primary-color);
+  }
+
+  .group-container:hover {
+    background-color: var(--accent-color);
+    color: var(--main-color);
+  }
+
+  .group-name {
+    display: flex;
+    align-items: center;
+    font-size: 15px;
+    height: 50px;
+    letter-spacing: 0.3rem;
+    line-height: 0;
+    padding-left: 25px;
+  }
+
+  .pages {
+    display: none;
+    flex-direction: column;
+    align-items: left;
+    position: absolute;
+    width: 230px;
+    z-index: 2;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    background-color: var(--primary-color);
+  }
+
+  .group-container:hover .pages {
+    display: flex;
+  }
+
+  .page-item {
+    --line-dist: 10px;
+    --link-indent: 35px;
+    display: block;
+    position: relative;
+    background-color: var(--accent-color);
+  }
+
+  .page-item::before {
+    --width: 10px;
+    --height: 2px;
+    position: absolute;
+    top: calc(50% - var(--line-dist) / 2);
+    left: calc(var(--link-indent) / 2 - var(--width) / 2);
+    width: var(--width);
+    height: var(--height);
+    background-color: var(--main-color);
+    content: "";
+  }
+
+  .page-link {
+    position: relative;
+    display: flex;
+    align-items: center;
+    height: 50px;
+    padding-left: var(--link-indent);
+    text-decoration: none;
+    font-size: 15px;
+    color: var(--main-color);
+  }
+
+  .page-name {
+    --border-thinkness: 3px;
+    padding-bottom: var(--line-dist);
+    background-image: linear-gradient(var(--main-color));
+    background-repeat: no-repeat;
+    background-position: bottom right;
+    background-size: 0 var(--border-thinkness);
+    transition: background-size 0.3s;
+  }
+
+  .page-item:hover > .page-link > .page-name {
+    background-position: bottom left;
+    background-size: 100% var(--border-thinkness);
+    transition: background-size 0.3s;
+  }
+
+  .link-button {
+    display: flex;
+    align-items: center;
+    height: 30px;
+    text-decoration: none;
+    letter-spacing: 0.3rem;
+    margin-left: 10px;
+    margin-right: 10px;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    border-radius: 30px;
+    line-height: 0;
+    font-size: 15px;
+    color: var(--main-color);
+    background-color: var(--accent-color);
+  }
 </style>

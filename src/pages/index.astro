@@ -68,7 +68,7 @@ export const events = [
 ---
 <Layout title={pageTitle} currentPage={pageLink}>
 	<div class="slide">
-		<img src="/uec-orientation-2025/slide1.png"/>
+		<img src="/slide1.png"/>
 	</div>
   <main class="main-content">
     <div class="left-column">
@@ -91,6 +91,27 @@ export const events = [
 	width: 100%;
 	height: auto;
 	object-fit: cover;
-	margin-top: 1rem;
+  }
+
+  .main-content {
+    display: flex;
+    gap: 24px;
+    margin: 0 auto;
+    padding: 24px;
+  }
+
+  .left-column {
+    flex: 2; /* 左を広めに */
+  }
+
+  .right-column {
+    flex: 1; /* 右を細めに */
+  }
+
+  /* スマホ対応（縦並び） */
+  @media (max-width: 1200px) {
+    .main-content {
+      flex-direction: column;
+    }
   }
 </style>
